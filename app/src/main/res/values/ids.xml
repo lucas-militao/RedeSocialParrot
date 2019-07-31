@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <item type="id" name="fragment_fields_register"/>
+    <item type="id" name="fragment_photo_register"/>
+
+</resources>

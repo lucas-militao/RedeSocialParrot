@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Parrot</string>
+    <string name="toolbar_title_cadastro">Cadastro</string>
+    <string name="dialog_positive_button_voltar">Voltar</string>
+</resources>
