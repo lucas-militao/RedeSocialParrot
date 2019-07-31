@@ -20,7 +20,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
-        android:id="@+id/ParrotImage"
+        android:id="@+id/parrotImage"
         android:layout_width="88.63dp"
         android:layout_height="88.65dp"
         android:layout_marginStart="8dp"
@@ -32,7 +32,7 @@
         app:srcCompat="@drawable/ic_parrot_pink" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email_field"
+        android:id="@+id/emailField"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_parrot" >
+        app:layout_constraintTop_toBottomOf="@+id/txtParrot" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -53,7 +53,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password_field"
+        android:id="@+id/passwordField"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_field">
+        app:layout_constraintTop_toBottomOf="@+id/emailField">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -74,7 +74,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/loginButton"
         android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -85,10 +85,10 @@
         android:text="Entrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_field" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordField" />
 
     <TextView
-        android:id="@+id/button_register_user"
+        android:id="@+id/registerUserButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -103,7 +103,7 @@
         app:layout_constraintVertical_bias="0.085" />
 
     <TextView
-        android:id="@+id/txt_parrot"
+        android:id="@+id/txtParrot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp"
@@ -114,7 +114,7 @@
         android:text="Parrot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ParrotImage" />
+        app:layout_constraintTop_toBottomOf="@+id/parrotImage" />
 
     <View
         android:id="@+id/view"
@@ -127,7 +127,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

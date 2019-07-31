@@ -30,27 +30,31 @@ class LoginActivity : BaseActivity() {
     fun subscribeUI() {
 
         authenticationViewModel.onError.observe(this, Observer{
+
             toast(it)
+
         })
 
         authenticationViewModel.onLoginSuccessful.observe(this, Observer {
-            toast("Login deu certo")
+
+            startActivity<PrincipalActivity>()
+
         })
 
     }
 
     private fun setupView() {
 
-        login_button.setOnClickListener {
+        loginButton.setOnClickListener {
 
             authenticationViewModel.login(
-                    email_field?.editText?.text?.toString(),
-                    password_field?.editText?.text?.toString()
+                    emailField?.editText?.text?.toString(),
+                    passwordField?.editText?.text?.toString()
             )
 
         }
 
-        button_register_user.setOnClickListener {
+        registerUserButton.setOnClickListener {
 
             startActivity<RegisterUserActivity>()
 

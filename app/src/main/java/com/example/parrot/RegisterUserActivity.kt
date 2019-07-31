@@ -1,19 +1,9 @@
 package com.example.parrot
 
-import android.app.Activity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.MenuItem
-import android.widget.TextView
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.activity_photo_cadastro.*
 import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.activity_register_fields.*
-import org.jetbrains.anko.support.v4.toast
-import org.jetbrains.anko.toast
-import java.lang.reflect.Proxy
 
 class RegisterUserActivity : BaseActivity() {
 
@@ -30,7 +20,7 @@ class RegisterUserActivity : BaseActivity() {
         if (savedInstanceState == null) {
 
             supportFragmentManager.beginTransaction()
-                    .add(R.id.fragment_container, RegisterFieldsFragment.newInstance(), "RegistroCampos")
+                    .add(R.id.fragmentContainer, RegisterFieldsFragment.newInstance(), "RegistroCampos")
                     .commit()
 
         }
@@ -50,7 +40,7 @@ class RegisterUserActivity : BaseActivity() {
 
             R.id.fragment_photo_register -> {
                 supportFragmentManager.inTransaction {
-                    replace(R.id.fragment_container, RegisterFieldsFragment())
+                    replace(R.id.fragmentContainer, RegisterFieldsFragment())
                 }
 
                 id_dados_fragment = R.id.fragment_fields_register
@@ -62,7 +52,7 @@ class RegisterUserActivity : BaseActivity() {
     fun changeFragment() {
 
         supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, RegisterPhotoFragment.newInstance(), "RegistrarFoto")
+                .add(R.id.fragmentContainer, RegisterPhotoFragment.newInstance(), "RegistrarFoto")
                 .commit()
 
         id_dados_fragment = R.id.fragment_photo_register
