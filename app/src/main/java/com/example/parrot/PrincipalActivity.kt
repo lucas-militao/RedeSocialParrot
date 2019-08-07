@@ -1,9 +1,18 @@
 package com.example.parrot
 
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProviders
+import com.example.parrot.core.activity.BaseActivity
+import com.example.parrot.modules.post.activity.fragment.HomeFragment
+import com.example.parrot.modules.NotificationFragment
+import com.example.parrot.modules.ProfileFragment
+import com.example.parrot.modules.SearchFragment
+import com.example.parrot.modules.post.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.activity_principal.*
 
 class PrincipalActivity: BaseActivity() {
+
+    lateinit var postViewModel: PostViewModel
 
     companion object {
 
@@ -14,6 +23,8 @@ class PrincipalActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_principal)
+
+        postViewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
 
         bottom_menu.setOnNavigationItemSelectedListener {menu ->
 
