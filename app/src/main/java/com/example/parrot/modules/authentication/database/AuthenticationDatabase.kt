@@ -2,11 +2,12 @@ package com.example.parrot.modules.authentication.database
 import com.example.parrot.modules.authentication.model.SessionAuthentication
 import com.example.parrot.core.SessionController
 import com.example.parrot.modules.authentication.model.User
+import com.example.parrot.modules.authentication.model.UserResponse
 import io.realm.Realm
 
 object AuthenticationDatabase {
 
-    fun saveUser(user: User) {
+    fun saveUser(user: User?) {
 
         Realm.getDefaultInstance().use { realm ->
 

@@ -8,7 +8,10 @@ open class User: RealmObject() {
     @PrimaryKey
     var id: Int = -1
 
-    var uid: String = ""
-    var email: String = ""
+    var nome = ""
+    var email = ""
+    var username = ""
+    var foto = ""
+    var amigos = ""
 
 }

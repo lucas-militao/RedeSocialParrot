@@ -1,6 +1,7 @@
 package com.example.parrot.modules.authentication.network
 
 import com.example.parrot.core.network.BaseNetwork
+import com.example.parrot.modules.authentication.model.User
 import com.example.parrot.modules.authentication.model.UserResponse
 import com.example.parrot.modules.authentication.model.UserWrapper
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -23,9 +24,9 @@ object AuthenticationNetwork : BaseNetwork() {
         val userWrapper = UserWrapper(email, password)
 
 
-        API.requestLogin(userWrapper).enqueue(object : Callback<UserResponse> {
+        API.requestLogin(userWrapper).enqueue(object : Callback<User> {
 
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
 
                 if (response.isSuccessful) {
                     onSuccess(response)
@@ -34,7 +35,7 @@ object AuthenticationNetwork : BaseNetwork() {
                 }
             }
 
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+            override fun onFailure(call: Call<User>, t: Throwable) {
                 onError()
                 t.printStackTrace()
             }

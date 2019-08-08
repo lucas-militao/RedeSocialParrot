@@ -2,6 +2,7 @@ package com.example.parrot.core.network
 
 import android.annotation.SuppressLint
 import com.example.parrot.BuildConfig
+import com.example.parrot.modules.authentication.model.User
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,9 +21,9 @@ abstract class BaseNetwork {
         const val BASE_URL = "http://200.19.188.7:3010"
 //        const val BASE_URL = "http://172.18.9.240:3010"
 
-        const val HEADER_UID = "uid"
-        const val HEADER_ACCESS_TOKEN = "Access-Token"
-        const val HEADER_CLIENT = "client"
+        const val TOKEN = "token"
+
+        val USER = User()
 
     }
 
