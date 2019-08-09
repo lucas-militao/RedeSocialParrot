@@ -29,9 +29,8 @@ object AuthenticationBusiness {
 
     fun hasUserLogged(): Boolean {
 
-        val sessionAuth = SessionController.sessionAuthentication
+        return AuthenticationDatabase.getSessionAuthentication() != null
 
-        return SessionController.user != null && sessionAuth != null && sessionAuth.isSessionAuthenticated()
     }
 
     fun registerUser(
@@ -62,19 +61,17 @@ object AuthenticationBusiness {
         AuthenticationNetwork.requestLogin(email, password,
                 onSuccess = { response ->
 
-                    val user = response.body()
-
-                    SessionAuthentication.apply {
+                    val sessionAuth = SessionAuthentication().apply {
                         token = response.headers() [BaseNetwork.TOKEN] ?: ""
+                        user = response.body()
                     }
 
-                    if (SessionAuthentication.token.isNullOrEmpty()) {
+                    if (sessionAuth.token.isEmpty()) {
                         onError("Falha ao autenticar usuário")
                         return@requestLogin
                     }
 
-                    AuthenticationDatabase.saveUser(user)
-                    AuthenticationDatabase.saveSessionAuthentication(SessionAuthentication)
+                    AuthenticationDatabase.saveSession(sessionAuth)
 
                     onSuccess()
 

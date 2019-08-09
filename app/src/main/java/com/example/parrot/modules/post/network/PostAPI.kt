@@ -12,10 +12,9 @@ import retrofit2.http.POST
 interface PostAPI {
 
     @POST("postagem")
-    fun doPost(@Body post: PostWrapper,
-               @Header(BaseNetwork.HEADER_CLIENT) client: String? = SessionController.sessionAuthentication?.client,
-               @Header(BaseNetwork.HEADER_ACCESS_TOKEN) accessToken: String? = SessionController.sessionAuthentication?.accessToken,
-               @Header(BaseNetwork.HEADER_UID) uid: String? = SessionController.sessionAuthentication?.uid
+    fun doPost(
+        @Body post: PostWrapper,
+        @Header(BaseNetwork.TOKEN) accessToken: String? = SessionController.token
     ): Call<Post>
 
 //    @GET("postagem?pagina=1")

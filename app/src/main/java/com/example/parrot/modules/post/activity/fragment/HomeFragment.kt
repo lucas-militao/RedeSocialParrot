@@ -33,6 +33,7 @@ class HomeFragment: Fragment() {
         postViewModel = ViewModelProviders.of(activity!!).get(PostViewModel::class.java)
 
         setupView()
+        subscribeUI()
 
     }
 

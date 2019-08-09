@@ -1,6 +1,7 @@
 package com.example.parrot.core.application
 
 import android.app.Application
+import android.se.omapi.Session
 import com.example.parrot.BuildConfig
 import com.example.parrot.BuildConfig.DEBUG
 import com.example.parrot.core.SessionController
@@ -18,10 +19,15 @@ class RedeSocialParrotApplication : Application(){
         setupRealm()
         setupStetho()
 
-        SessionController.user = AuthenticationDatabase.getUser()
-        SessionController.sessionAuthentication = AuthenticationDatabase.getSessionAuthentication()
-    }
+        AuthenticationDatabase.getSessionAuthentication()?.let {
 
+            SessionController.user = it.user
+            SessionController.token = it.token
+
+        }
+//        SessionController.sessionAuthentication = AuthenticationDatabase.getSessionAuthentication()
+
+    }
 
     private fun setupRealm() {
         Realm.init(this)

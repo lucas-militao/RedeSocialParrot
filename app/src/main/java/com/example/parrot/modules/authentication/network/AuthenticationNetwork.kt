@@ -2,7 +2,6 @@ package com.example.parrot.modules.authentication.network
 
 import com.example.parrot.core.network.BaseNetwork
 import com.example.parrot.modules.authentication.model.User
-import com.example.parrot.modules.authentication.model.UserResponse
 import com.example.parrot.modules.authentication.model.UserWrapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -17,7 +16,7 @@ object AuthenticationNetwork : BaseNetwork() {
     fun requestLogin(
             email: String,
             password: String,
-            onSuccess: (response: Response<UserResponse>) -> Unit,
+            onSuccess: (response: Response<User>) -> Unit,
             onError: () -> Unit
     ) {
 

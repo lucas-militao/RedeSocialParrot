@@ -3,14 +3,12 @@ package com.example.parrot.modules.authentication.model
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
-object SessionAuthentication {
+open class SessionAuthentication : RealmObject() {
 
-    var user = User()
+    @PrimaryKey
+    var id = -1
 
+    var user : User? = null
     var token: String = ""
-
-    fun isSessionAuthenticated(): Boolean {
-        return token.isNullOrEmpty()
-    }
 
 }

@@ -1,6 +1,7 @@
 package com.example.parrot
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.ViewModelProviders
 import com.example.parrot.core.activity.BaseActivity
 import com.example.parrot.modules.post.activity.fragment.HomeFragment
