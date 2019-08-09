@@ -80,4 +80,10 @@ object AuthenticationBusiness {
                     onError("Falha no login")
                 })
     }
+
+    fun doLogout() {
+
+        AuthenticationDatabase.clearAppData()
+
+    }
 }

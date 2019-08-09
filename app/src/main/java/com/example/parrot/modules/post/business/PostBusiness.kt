@@ -26,4 +26,8 @@ object PostBusiness {
 
     }
 
+    fun listPosts(): List<Post> {
+        return PostBusiness.listPosts()
+    }
+
 }

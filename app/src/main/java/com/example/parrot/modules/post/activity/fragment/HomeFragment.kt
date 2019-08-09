@@ -10,9 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.parrot.R
 import com.example.parrot.core.SessionController
+import com.example.parrot.modules.authentication.business.AuthenticationBusiness
 import com.example.parrot.modules.authentication.network.AuthenticationNetwork
 import com.example.parrot.modules.post.model.PostWrapper
 import com.example.parrot.modules.post.adapter.PostAdapter
+import com.example.parrot.modules.post.business.PostBusiness
 import com.example.parrot.modules.post.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.fragment_home_menu.*
 import kotlinx.android.synthetic.main.post_holder.*
@@ -39,7 +41,7 @@ class HomeFragment: Fragment() {
 
     private fun setupView() {
 
-//        timeLineRecyclerView.adapter = PostAdapter(posts())
+        timeLineRecyclerView.adapter = PostAdapter(PostBusiness.listPosts())
 
         buttonPost.setOnClickListener {
             postViewModel.doPost(postField.text.toString())

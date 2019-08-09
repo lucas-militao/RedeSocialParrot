@@ -6,8 +6,10 @@ import com.example.parrot.modules.post.model.Post
 import com.example.parrot.modules.post.model.PostWrapper
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import java.util.*
 
 interface PostAPI {
 
@@ -16,6 +18,12 @@ interface PostAPI {
         @Body post: PostWrapper,
         @Header(BaseNetwork.TOKEN) accessToken: String? = SessionController.token
     ): Call<Post>
+
+    @GET("postagem?pagina=1")
+    fun getPosts(
+        @Body post: PostWrapper,
+        @Header(BaseNetwork.TOKEN) accessToken: String? = SessionController.token
+    ): Call<MutableList<Post>>
 
 //    @GET("postagem?pagina=1")
 //    fun getPosts(@Body )

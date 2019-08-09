@@ -34,11 +34,15 @@ object PostNetwork : BaseNetwork() {
                 }
 
             }
-
-
         })
+    }
 
+    fun getPosts(
+        onSuccess: (posts: MutableList<Post>) -> Unit,
+        onError: () -> Unit
+    ) {
 
+        doRequest(API, onSuccess, onError) { getPosts() }
 
     }
 

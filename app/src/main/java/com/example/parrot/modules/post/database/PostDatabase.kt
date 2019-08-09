@@ -22,8 +22,8 @@ object PostDatabase {
         return Realm.getDefaultInstance().use {realm ->
 
             realm.where(Post::class.java)
-                    .findAll()?.let { contacts ->
-                        realm.copyFromRealm(contacts
+                    .findAll()?.let { posts ->
+                        realm.copyFromRealm( posts
                         )
                     }
 
