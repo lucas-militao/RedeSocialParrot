@@ -26,8 +26,32 @@ object PostBusiness {
 
     }
 
-    fun listPosts(): List<Post> {
-        return PostBusiness.listPosts()
+    fun getPosts(
+        onSuccess: (posts: List<Post>) -> Unit,
+        onError: (message: String) -> Unit
+    ) {
+
+        PostDatabase.getPosts()?.let(onSuccess)
+
+        PostNetwork.getPosts(
+            onSuccess = {
+                PostDatabase.savePosts(it)
+                onSuccess(it)
+            },
+            onError = {
+                onError("Não foi possível atualizar os contatos!")
+            }
+        )
+    }
+
+    fun getPostsDB() : List<Post> {
+        return PostDatabase.getPosts()?: listOf()
+    }
+
+    fun getPost(postID: Int): Post? {
+
+        return PostDatabase.getPost(postID)
+
     }
 
 }

@@ -50,4 +50,5 @@ class RedeSocialParrotApplication : Application(){
                 .build())
         }
     }
+
 }

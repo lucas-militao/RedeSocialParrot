@@ -8,7 +8,9 @@ import com.example.parrot.modules.post.model.Post
 import com.example.parrot.modules.post.model.PostWrapper
 import com.example.parrot.modules.post.viewholder.PostViewHolder
 
-class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostViewHolder>() {
+class PostAdapter() : RecyclerView.Adapter<PostViewHolder>() {
+
+     private var posts: List<Post> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.post_holder, parent, false)
@@ -21,5 +23,10 @@ class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostView
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         holder.bindView(posts[position])
+    }
+
+    fun updateListPosts(list: List<Post>) {
+        posts = list
+        notifyDataSetChanged()
     }
 }

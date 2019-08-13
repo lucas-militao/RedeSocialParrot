@@ -18,8 +18,8 @@ abstract class BaseNetwork {
 
     companion object {
 
-        const val BASE_URL = "http://200.19.188.7:3010"
-//        const val BASE_URL = "http://172.18.9.240:3010"
+//        const val BASE_URL = "http://200.19.188.7:3010"
+        const val BASE_URL = "http://172.18.9.240:3010"
 
         const val TOKEN = "token"
 

@@ -6,6 +6,7 @@ import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface AuthenticationAPI {
 
@@ -14,5 +15,8 @@ interface AuthenticationAPI {
 
     @POST("usuario")
     fun requestRegisterUser(@Body user: UserWrapper): Observable<Any>
+
+    @POST("/curtir/{id}")
+    fun requestCurtida(@Path("id") id: Int): Observable<Any>
 
 }

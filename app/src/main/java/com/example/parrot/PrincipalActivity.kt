@@ -15,7 +15,10 @@ import kotlinx.android.synthetic.main.activity_principal.*
 
 class PrincipalActivity: BaseActivity() {
 
+    enum class PostViewType { CREATE, EDIT, VISUALIZE }
+
     lateinit var postViewModel: PostViewModel
+    lateinit var activityViewType: PostViewType
 
     companion object {
 
@@ -28,6 +31,8 @@ class PrincipalActivity: BaseActivity() {
         setContentView(R.layout.activity_principal)
 
         postViewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
+
+
 
         bottom_menu.setOnNavigationItemSelectedListener {menu ->
 

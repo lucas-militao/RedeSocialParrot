@@ -1,9 +1,11 @@
 package com.example.parrot.modules.post.network
 
 import com.example.parrot.core.network.BaseNetwork
+import com.example.parrot.modules.authentication.model.SessionAuthentication
 import com.example.parrot.modules.post.model.Post
 import com.example.parrot.modules.post.model.PostWrapper
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 object PostNetwork : BaseNetwork() {
@@ -37,13 +39,31 @@ object PostNetwork : BaseNetwork() {
         })
     }
 
+//    fun getPosts(
+//        onSuccess: (posts: MutableList<Post>) -> Unit,
+//        onError: () -> Unit) {
+//
+//        API.getPosts(post = PostWrapper()).enqueue(object: Callback<MutableList<Post>?> {
+//            override fun onResponse(call: Call<MutableList<Post>?>,
+//                                    response: Response<MutableList<Post>?>) {
+//
+//                response?.body()?.let {
+//                    val posts: List<Post> = it
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<MutableList<Post>?>,
+//                                   t: Throwable) {}
+//        })
+//    }
+
+// Pede para utilizar Observable ao invés de Call, porém, não funciona da mesma forma.
     fun getPosts(
         onSuccess: (posts: MutableList<Post>) -> Unit,
         onError: () -> Unit
     ) {
-
         doRequest(API, onSuccess, onError) { getPosts() }
-
     }
+
 
 }
