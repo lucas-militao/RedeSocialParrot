@@ -2,13 +2,17 @@ package com.example.parrot.modules.post.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parrot.R
+import com.example.parrot.modules.post.business.PostBusiness
 import com.example.parrot.modules.post.model.Post
 import com.example.parrot.modules.post.model.PostWrapper
 import com.example.parrot.modules.post.viewholder.PostViewHolder
+import com.example.parrot.modules.post.viewmodel.PostViewModel
+import kotlinx.android.synthetic.main.post_holder.view.*
 
-class PostAdapter() : RecyclerView.Adapter<PostViewHolder>() {
+class PostAdapter(var onCurtir: (post: Post) -> Unit) : RecyclerView.Adapter<PostViewHolder>() {
 
      private var posts: List<Post> = listOf()
 
@@ -22,7 +26,7 @@ class PostAdapter() : RecyclerView.Adapter<PostViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bindView(posts[position])
+        holder.bindView(posts[position], onCurtir)
     }
 
     fun updateListPosts(list: List<Post>) {

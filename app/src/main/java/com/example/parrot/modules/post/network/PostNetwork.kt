@@ -12,6 +12,14 @@ object PostNetwork : BaseNetwork() {
 
     private val API by lazy { getRetrofitBuilder().create(PostAPI::class.java) }
 
+    fun curtir(
+        post: Post,
+        onSuccess: (response: Post) -> Unit,
+        onError: () -> Unit
+    ) {
+        doRequest(API, onSuccess, onError){ curtir(post.id) }
+    }
+
     fun doPost(
             mensagem : String,
             onSuccess: (response: Post) -> Unit,
@@ -38,24 +46,6 @@ object PostNetwork : BaseNetwork() {
             }
         })
     }
-
-//    fun getPosts(
-//        onSuccess: (posts: MutableList<Post>) -> Unit,
-//        onError: () -> Unit) {
-//
-//        API.getPosts(post = PostWrapper()).enqueue(object: Callback<MutableList<Post>?> {
-//            override fun onResponse(call: Call<MutableList<Post>?>,
-//                                    response: Response<MutableList<Post>?>) {
-//
-//                response?.body()?.let {
-//                    val posts: List<Post> = it
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<MutableList<Post>?>,
-//                                   t: Throwable) {}
-//        })
-//    }
 
 // Pede para utilizar Observable ao invés de Call, porém, não funciona da mesma forma.
     fun getPosts(

@@ -41,9 +41,7 @@ object PostDatabase {
                 .findFirst()?.let { post ->
                     realm.copyFromRealm(post)
                 }
-
         }
-
     }
 
     fun savePosts(posts: List<Post>) {
@@ -56,6 +54,18 @@ object PostDatabase {
             realm.commitTransaction()
 
         }
+    }
+
+    fun savePost(post: Post) {
+
+        Realm.getDefaultInstance().use { realm ->
+
+            realm.beginTransaction()
+            realm.copyToRealmOrUpdate(post)
+            realm.commitTransaction()
+
+        }
+
     }
 
 }

@@ -57,4 +57,10 @@ class PostViewModel : BaseViewModel() {
         )
     }
 
+    fun curtir(post: Post) {
+
+        PostBusiness.curtir(post)
+
+    }
+
 }

@@ -49,9 +49,20 @@ object PostBusiness {
     }
 
     fun getPost(postID: Int): Post? {
-
         return PostDatabase.getPost(postID)
+    }
 
+    fun curtir(post : Post) {
+
+        PostNetwork.curtir( post,
+            onSuccess = {
+
+                PostDatabase.savePost(it)
+
+            },
+            onError = {
+                print("error")
+            })
     }
 
 }

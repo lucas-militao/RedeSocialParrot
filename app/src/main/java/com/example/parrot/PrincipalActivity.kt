@@ -98,6 +98,7 @@ class PrincipalActivity: BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        print("AAAAAAAAAAAAAA")
         AuthenticationBusiness.doLogout()
     }
 

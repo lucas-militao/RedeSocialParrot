@@ -16,7 +16,5 @@ interface AuthenticationAPI {
     @POST("usuario")
     fun requestRegisterUser(@Body user: UserWrapper): Observable<Any>
 
-    @POST("/curtir/{id}")
-    fun requestCurtida(@Path("id") id: Int): Observable<Any>
 
 }

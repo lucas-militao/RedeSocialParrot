@@ -9,12 +9,15 @@ import android.widget.ListAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 import com.example.parrot.R
 import com.example.parrot.modules.post.adapter.PostAdapter
 import com.example.parrot.modules.post.database.PostDatabase
 import com.example.parrot.modules.post.model.Post
 import com.example.parrot.modules.post.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.fragment_home_menu.*
+import kotlinx.android.synthetic.main.post_holder.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.toast
 
 const val EXTRA_POST_VIEW_TYPE = "viewType"
@@ -22,12 +25,9 @@ const val ESTRA_CONTACT_ID = "contactID"
 
 class HomeFragment: Fragment() {
 
-    enum class PostViewType { CREATE, EDIT, VISUALIZE }
-
     lateinit var postViewModel: PostViewModel
-    lateinit var activityViewType: PostViewType
 
-    val postAdapter: PostAdapter by lazy { PostAdapter() }
+    lateinit var postAdapter: PostAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home_menu, container, false)
@@ -39,20 +39,25 @@ class HomeFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         postViewModel = ViewModelProviders.of(activity!!).get(PostViewModel::class.java)
-        postViewModel.getPosts()
 
         setupView()
         subscribeUI()
 
+        postViewModel.getPosts()
     }
 
     private fun setupView() {
+
+        postAdapter = PostAdapter {
+            postViewModel.curtir(it)
+        }
 
         timeLineRecyclerView.adapter = postAdapter
 
         buttonPost.setOnClickListener {
             postViewModel.doPost(postField.text.toString())
         }
+
     }
 
     private fun subscribeUI() {
@@ -68,8 +73,6 @@ class HomeFragment: Fragment() {
         postViewModel.post.observe(this, Observer {
             postAdapter?.updateListPosts(it)
         })
-
-
 
     }
 }
