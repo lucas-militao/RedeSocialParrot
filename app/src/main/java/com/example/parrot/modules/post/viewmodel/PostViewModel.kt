@@ -9,6 +9,7 @@ import com.example.parrot.core.viewmodel.BaseViewModel
 import com.example.parrot.livedata.SingleLiveEvent
 import com.example.parrot.modules.post.business.PostBusiness
 import com.example.parrot.modules.post.business.PostBusiness.doPost
+import com.example.parrot.modules.post.database.PostDatabase
 import com.example.parrot.modules.post.model.Post
 
 class PostViewModel : BaseViewModel() {
@@ -46,6 +47,20 @@ class PostViewModel : BaseViewModel() {
 
     }
 
+    fun deletePost(post: Post) {
+
+        onPostRequestStatus.value = STARTED
+
+        PostBusiness.deletePost(post,
+            onSuccess = {
+                _post.value = it
+            },
+            onError = {
+                print(it)
+            })
+
+    }
+
     fun getPosts() {
         PostBusiness.getPosts(
             onSuccess = {
@@ -58,9 +73,7 @@ class PostViewModel : BaseViewModel() {
     }
 
     fun curtir(post: Post) {
-
         PostBusiness.curtir(post)
-
     }
 
 }

@@ -12,7 +12,7 @@ import com.example.parrot.modules.post.viewholder.PostViewHolder
 import com.example.parrot.modules.post.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.post_holder.view.*
 
-class PostAdapter(var onCurtir: (post: Post) -> Unit) : RecyclerView.Adapter<PostViewHolder>() {
+class PostAdapter(var onCurtir: (post: Post) -> Unit, var onDelete: (post: Post) -> Unit) : RecyclerView.Adapter<PostViewHolder>() {
 
      private var posts: List<Post> = listOf()
 
@@ -26,7 +26,7 @@ class PostAdapter(var onCurtir: (post: Post) -> Unit) : RecyclerView.Adapter<Pos
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bindView(posts[position], onCurtir)
+        holder.bindView(posts[position], onCurtir, onDelete)
     }
 
     fun updateListPosts(list: List<Post>) {

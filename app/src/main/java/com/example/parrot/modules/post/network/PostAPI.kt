@@ -29,4 +29,9 @@ interface PostAPI {
                 @Header (BaseNetwork.TOKEN) accessToken: String? = SessionController.token)
             : io.reactivex.Observable<Post>
 
+    @DELETE("/postagem/{id}")
+    fun deletePost (@Path("id") id: Int,
+                    @Header (BaseNetwork.TOKEN) accessToken: String? = SessionController.token)
+            : io.reactivex.Observable<Post>
+
 }

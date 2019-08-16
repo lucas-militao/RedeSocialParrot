@@ -8,16 +8,17 @@ import kotlinx.android.synthetic.main.post_holder.view.*
 
 class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bindView(post: Post, onCurtir:(post: Post) -> Unit) {
+    fun bindView(post: Post, onCurtir:(post: Post) -> Unit, onDelete:(post: Post) -> Unit) {
 
         itemView.txtPost.text = post.mensagem
         itemView.txtLikeCount.text = post.curtidas.toString()
-        if (post.curtido) {
-
-        }
 
         itemView.imgCurtir.setOnClickListener {
             onCurtir(post)
+        }
+
+        itemView.txtEditPost.setOnClickListener {
+            onDelete(post)
         }
 
     }

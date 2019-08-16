@@ -31,8 +31,6 @@ class HomeFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home_menu, container, false)
-
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -48,9 +46,10 @@ class HomeFragment: Fragment() {
 
     private fun setupView() {
 
-        postAdapter = PostAdapter {
-            postViewModel.curtir(it)
-        }
+        postAdapter = PostAdapter(
+            onCurtir = { postViewModel.curtir(it) },
+            onDelete = { postViewModel.deletePost(it) }
+        )
 
         timeLineRecyclerView.adapter = postAdapter
 

@@ -47,13 +47,39 @@ object PostNetwork : BaseNetwork() {
         })
     }
 
-// Pede para utilizar Observable ao invés de Call, porém, não funciona da mesma forma.
+    fun deletePost(
+        post: Post,
+        onSuccess: (post: Post) -> Unit,
+        onError: () -> Unit
+    ) {
+
+        doRequest(API, onSuccess, onError) { deletePost(post.id) }
+
+//        API.deletePost(post.id).enqueue(object: retrofit2.Callback<Post> {
+//
+//            override fun onFailure(call: Call<Post>, t: Throwable) {
+//                onError()
+//                t.printStackTrace()
+//            }
+//
+//            override fun onResponse(call: Call<Post>, response: Response<Post>) {
+//                if (response.isSuccessful) {
+//
+//                } else {
+//
+//                }
+//            }
+//
+//
+//        })
+    }
+
+
+    // Pede para utilizar Observable ao invés de Call, porém, não funciona da mesma forma.
     fun getPosts(
         onSuccess: (posts: MutableList<Post>) -> Unit,
         onError: () -> Unit
     ) {
         doRequest(API, onSuccess, onError) { getPosts() }
     }
-
-
 }

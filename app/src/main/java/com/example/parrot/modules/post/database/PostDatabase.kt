@@ -68,4 +68,15 @@ object PostDatabase {
 
     }
 
+    fun deletePost(post: Post) {
+        Realm.getDefaultInstance().use { realm ->
+
+            realm.where(Post::class.java)
+                .equalTo(Post::id.name, post.id)
+                .findFirst()
+                ?.deleteFromRealm()
+
+        }
+    }
+
 }

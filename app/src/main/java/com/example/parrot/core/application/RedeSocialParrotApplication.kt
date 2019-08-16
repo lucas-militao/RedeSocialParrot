@@ -13,8 +13,19 @@ import io.realm.RealmConfiguration
 
 class RedeSocialParrotApplication : Application(){
 
+    companion object {
+
+        private var instance: Application? = null
+
+        fun invalidateSession() {
+            AuthenticationDatabase.clearAppData()
+        }
+    }
+
     override fun onCreate() {
         super.onCreate()
+
+        instance = this
 
         setupRealm()
         setupStetho()

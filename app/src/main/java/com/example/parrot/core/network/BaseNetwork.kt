@@ -2,6 +2,7 @@ package com.example.parrot.core.network
 
 import android.annotation.SuppressLint
 import com.example.parrot.BuildConfig
+import com.example.parrot.core.application.RedeSocialParrotApplication
 import com.example.parrot.modules.authentication.model.User
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import io.reactivex.Observable
@@ -9,6 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -67,6 +69,10 @@ abstract class BaseNetwork {
                     onSuccess(response)
                 },
                 { error ->
+
+                    if (error is HttpException && error.code() == 401) {
+                        RedeSocialParrotApplication.invalidateSession()
+                    }
                     onError()
                 }
             )

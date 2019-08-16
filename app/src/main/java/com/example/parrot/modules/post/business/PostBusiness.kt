@@ -56,13 +56,25 @@ object PostBusiness {
 
         PostNetwork.curtir( post,
             onSuccess = {
-
                 PostDatabase.savePost(it)
-
             },
             onError = {
                 print("error")
             })
+    }
+
+    fun deletePost(post: Post,
+                   onSuccess: (posts: List<Post>) -> Unit,
+                   onError: (message: String) -> Unit) {
+
+        PostNetwork.deletePost( post,
+            onSuccess = {
+                PostDatabase.deletePost(it)
+            },
+            onError = {
+                print("Erro ao deletar post!")
+            })
+
     }
 
 }
