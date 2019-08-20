@@ -1,15 +1,13 @@
 package com.example.parrot
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.ViewModelProviders
 import com.example.parrot.core.activity.BaseActivity
 import com.example.parrot.modules.post.activity.fragment.HomeFragment
 import com.example.parrot.modules.NotificationFragment
 import com.example.parrot.modules.ProfileFragment
-import com.example.parrot.modules.SearchFragment
+import com.example.parrot.modules.search.SearchFragment
 import com.example.parrot.modules.authentication.business.AuthenticationBusiness
-import com.example.parrot.modules.authentication.database.AuthenticationDatabase
 import com.example.parrot.modules.post.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.activity_principal.*
 

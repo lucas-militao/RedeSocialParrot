@@ -53,10 +53,13 @@ class PostViewModel : BaseViewModel() {
 
         PostBusiness.deletePost(post,
             onSuccess = {
-                _post.value = it
+                _post.value = PostDatabase.getPosts()
+                onPostSucessful.call()
+                onPostRequestStatus.value = FINISHED
             },
             onError = {
-                print(it)
+                onError.value = it
+                onPostRequestStatus.value = FINISHED
             })
 
     }
@@ -73,7 +76,19 @@ class PostViewModel : BaseViewModel() {
     }
 
     fun curtir(post: Post) {
-        PostBusiness.curtir(post)
+
+        onPostRequestStatus.value = STARTED
+
+        PostBusiness.curtir(post,
+            onSuccess = {
+                _post.value = PostDatabase.getPosts()
+                onPostSucessful.call()
+                onPostRequestStatus.value = FINISHED
+            },
+            onError = {
+                onError.value = it
+                onPostRequestStatus.value = FINISHED
+            })
     }
 
 }

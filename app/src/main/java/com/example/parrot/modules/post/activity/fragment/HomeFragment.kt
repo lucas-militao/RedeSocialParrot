@@ -65,10 +65,6 @@ class HomeFragment: Fragment() {
             toast(it)
         })
 
-        postViewModel.onPostSucessful.observe(this, Observer {
-            toast("post realizado com sucesso")
-        })
-
         postViewModel.post.observe(this, Observer {
             postAdapter?.updateListPosts(it)
         })
