@@ -6,11 +6,18 @@ import com.example.parrot.modules.authentication.model.User
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Path
 
 interface ProfileAPI {
 
     @GET("/usuario")
     fun requestProfiles(
+            @Header (BaseNetwork.TOKEN) accessToken: String? = SessionController.token
+    ): Observable<MutableList<User>>
+
+    @GET("/usuario/?busca={search}")
+    fun requestProfile(
+            @Path ("search") search: String,
             @Header (BaseNetwork.TOKEN) accessToken: String? = SessionController.token
     ): Observable<MutableList<User>>
 

@@ -25,8 +25,7 @@ object PostDatabase {
             realm.where(Post::class.java)
                     .sort("criadoEm", Sort.DESCENDING)
                     .findAll()?.let { posts ->
-                        realm.copyFromRealm( posts
-                        )
+                        realm.copyFromRealm(posts)
                     }
 
         }

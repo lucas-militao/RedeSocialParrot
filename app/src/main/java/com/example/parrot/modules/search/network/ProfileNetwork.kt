@@ -11,9 +11,15 @@ object ProfileNetwork : BaseNetwork() {
             onSuccess: (users: MutableList<User>) -> Unit,
             onError: () -> Unit
     ) {
-
         doRequest(API, onSuccess, onError) { requestProfiles() }
+    }
 
+    fun requestProfile(
+            search: String,
+            onSuccess: (results: List<User>) -> Unit,
+            onError: () -> Unit
+    ) {
+        doRequest(API, onSuccess, onError) { requestProfile(search) }
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.parrot.modules.search.database
 
 import com.example.parrot.modules.authentication.model.User
+import io.realm.Case
 import io.realm.Realm
 import io.realm.Sort
 
@@ -31,4 +32,30 @@ object ProfileDatabase {
 
     }
 
+//    fun searchProfile(username: String) : List<User>? {
+//
+//        return Realm.getDefaultInstance().use { realm ->
+//
+//            realm.where(User::class.java)
+//                    .like(User::username.name, username)
+//                    .sort("username", Sort.ASCENDING)
+//                    .findAll()?.let { profiles ->
+//                        realm.copyFromRealm(profiles)
+//                    }
+//
+//        }
+//
+//    }
+
+//    fun searchProfile(search: String) : List<User>? {
+//
+//        return Realm.getDefaultInstance().use {  realm ->
+//            realm.where(User::class.java)
+//                    .contains("username", search, Case.INSENSITIVE)
+//                    .findAll()?.let {  results ->
+//                        realm.copyFromRealm(results)
+//                    }
+//        }
+//
+//    }
 }

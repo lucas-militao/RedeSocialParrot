@@ -7,7 +7,7 @@ import com.example.parrot.R
 import com.example.parrot.modules.authentication.model.User
 import com.example.parrot.modules.search.viewholder.ProfileViewHolder
 
-class ProfileAdapter : RecyclerView.Adapter<ProfileViewHolder>(){
+class ProfileAdapter() : RecyclerView.Adapter<ProfileViewHolder>(){
 
     private var users: List<User> = listOf()
 
