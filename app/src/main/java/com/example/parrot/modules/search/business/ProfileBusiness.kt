@@ -1,6 +1,7 @@
 package com.example.parrot.modules.search.business
 
 import com.example.parrot.modules.authentication.model.User
+import com.example.parrot.modules.search.database.ProfileDatabase
 import com.example.parrot.modules.search.network.ProfileNetwork
 
 object ProfileBusiness {
@@ -21,7 +22,7 @@ object ProfileBusiness {
     }
 
     fun searchProfile(search: String,
-                      onSuccess: (results: List<User>) -> Unit,
+                      onSuccess: (results: MutableList<User>) -> Unit,
                       onError: (message: String) -> Unit) {
 
         ProfileNetwork.requestProfile(search,
@@ -33,13 +34,11 @@ object ProfileBusiness {
                 })
     }
 
-//    fun searchProfile(username: String,
-//                      onSuccess: (users: MutableList<User>) -> Unit,
-//                      onError: (message: String) -> Unit)
-//            : List<User>? {
-//
-//        return ProfileDatabase.searchProfile(username) ?: listOf()
-//    }
+    fun saveProfile(profile: User) {
+
+        ProfileDatabase.saveProfile(profile)
+
+    }
 
 
 

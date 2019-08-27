@@ -4,19 +4,16 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.example.parrot.core.activity.BaseActivity
 import com.example.parrot.modules.post.activity.fragment.HomeFragment
-import com.example.parrot.modules.NotificationFragment
-import com.example.parrot.modules.ProfileFragment
-import com.example.parrot.modules.search.SearchFragment
+import com.example.parrot.modules.notification.activity.fragment.NotificationFragment
+import com.example.parrot.modules.profile.activity.ProfileFragment
+import com.example.parrot.modules.search.activity.fragment.SearchFragment
 import com.example.parrot.modules.authentication.business.AuthenticationBusiness
 import com.example.parrot.modules.post.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.activity_principal.*
 
 class PrincipalActivity: BaseActivity() {
 
-    enum class PostViewType { CREATE, EDIT, VISUALIZE }
-
     lateinit var postViewModel: PostViewModel
-    lateinit var activityViewType: PostViewType
 
     companion object {
 
@@ -30,7 +27,7 @@ class PrincipalActivity: BaseActivity() {
 
         postViewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
 
-
+        setupActivity()
 
         bottom_menu.setOnNavigationItemSelectedListener {menu ->
 
@@ -40,6 +37,7 @@ class PrincipalActivity: BaseActivity() {
 
                     supportFragmentManager.inTransaction {
 
+                        toolbar.title = "Parrot"
                         replace(R.id.fragmentContainer, HomeFragment())
 
                     }
@@ -51,6 +49,7 @@ class PrincipalActivity: BaseActivity() {
 
                     supportFragmentManager.inTransaction {
 
+                        toolbar.title = "Busca"
                         replace(R.id.fragmentContainer, SearchFragment())
 
                     }
@@ -62,6 +61,7 @@ class PrincipalActivity: BaseActivity() {
 
                     supportFragmentManager.inTransaction {
 
+                        toolbar.title = "Notificações"
                         replace(R.id.fragmentContainer, NotificationFragment())
 
                     }
@@ -73,6 +73,7 @@ class PrincipalActivity: BaseActivity() {
 
                     supportFragmentManager.inTransaction {
 
+                        toolbar.title = "Perfil"
                         replace(R.id.fragmentContainer, ProfileFragment())
 
                     }
@@ -87,6 +88,7 @@ class PrincipalActivity: BaseActivity() {
         savedInstanceState?.let {
             bottom_menu.selectedItemId = it.getInt(CURRENT_BAT_SELECTED_ITEM)
         } ?: run { bottom_menu.selectedItemId = R.id.menu_home }
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -98,6 +100,10 @@ class PrincipalActivity: BaseActivity() {
         super.onDestroy()
         print("AAAAAAAAAAAAAA")
         AuthenticationBusiness.doLogout()
+    }
+
+    fun setupActivity() {
+        setSupportActionBar(toolbar)
     }
 
 }

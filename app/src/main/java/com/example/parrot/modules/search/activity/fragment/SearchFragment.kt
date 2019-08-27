@@ -1,4 +1,4 @@
-package com.example.parrot.modules.search
+package com.example.parrot.modules.search.activity.fragment
 
 import android.os.Bundle
 import android.text.Editable
@@ -9,10 +9,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.parrot.PrincipalActivity
 import com.example.parrot.R
+import com.example.parrot.inTransaction
+import com.example.parrot.modules.profile.activity.ProfileFragment
 import com.example.parrot.modules.search.adapter.ProfileAdapter
 import com.example.parrot.modules.search.viewmodel.ProfileViewModel
+import kotlinx.android.synthetic.main.activity_principal.*
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.fragment_search_menu.*
+import org.jetbrains.anko.support.v4.startActivity
 
 class SearchFragment: Fragment() {
 
@@ -37,7 +43,12 @@ class SearchFragment: Fragment() {
 
     private fun setupView() {
 
-        profileAdapter = ProfileAdapter()
+        profileAdapter = ProfileAdapter(
+                {
+                    profileViewModel.saveProfile(it)
+
+                }
+        )
 
         profileList.adapter = profileAdapter
 

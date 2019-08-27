@@ -22,9 +22,6 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         Locale.setDefault(Locale("PT", "br"))
         itemView.txtTimePost.text = DateUtils.getRelativeTimeSpanString(post.criadoEm * 1000).toString()
 
-
-
-
         itemView.imgCurtir.setOnClickListener {
             onCurtir(post)
             itemView.imgCurtir.setImageResource(R.drawable.ic_curtir_false)

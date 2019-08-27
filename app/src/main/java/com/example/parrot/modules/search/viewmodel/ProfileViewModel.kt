@@ -45,23 +45,10 @@ class ProfileViewModel : BaseViewModel() {
                 })
     }
 
-//    fun searchProfile(username: String) {
-//
-//        onProfileRequestSucessful.value = STARTED
-//
-//        ProfileBusiness.searchProfile(username,
-//                onSuccess = {
-//                    _profiles.value = it
-//                    onSearchProfileSucessful.call()
-//                    onProfileRequestSucessful.value = FINISHED
-//                },
-//                onError = {
-//                    onError.value = it
-//                    onProfileRequestSucessful.value = FINISHED
-//                })
-//
-//    }
+    fun saveProfile(profile: User) {
 
+        ProfileBusiness.saveProfile(profile)
 
+    }
 
 }

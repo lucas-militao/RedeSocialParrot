@@ -89,15 +89,6 @@ class RegisterFieldsFragment : Fragment() {
                 }.show()
             })
 
-            //SPLASH LAYOUT DE ESPERA PARA O CADASTRO DE NOVO USUÁRIO!!!
-//            onRegisterUserRequestStatus.observe(this@RegisterUserActivity, Observer { status ->
-//
-//                when(status) {
-//                    BaseNetwork.RequestStatus.STARTED -> loading.visibility = View.VISIBLE
-//                    else -> loading.visibility = View.GONE
-//                }
-//            })
-
             onRegisterUserSuccessful.observe(this@RegisterFieldsFragment, Observer {
 
                 alert {

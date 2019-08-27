@@ -32,30 +32,29 @@ object ProfileDatabase {
 
     }
 
-//    fun searchProfile(username: String) : List<User>? {
-//
-//        return Realm.getDefaultInstance().use { realm ->
-//
-//            realm.where(User::class.java)
-//                    .like(User::username.name, username)
-//                    .sort("username", Sort.ASCENDING)
-//                    .findAll()?.let { profiles ->
-//                        realm.copyFromRealm(profiles)
-//                    }
-//
-//        }
-//
-//    }
+    fun getProfile(profile: User) {
 
-//    fun searchProfile(search: String) : List<User>? {
-//
-//        return Realm.getDefaultInstance().use {  realm ->
-//            realm.where(User::class.java)
-//                    .contains("username", search, Case.INSENSITIVE)
-//                    .findAll()?.let {  results ->
-//                        realm.copyFromRealm(results)
-//                    }
-//        }
-//
-//    }
+        Realm.getDefaultInstance().use { realm ->
+
+            realm.beginTransaction()
+            realm.where(User::class.java)
+                    .equalTo(User::id.name, profile.id)
+                    .findFirst()?.let { user ->
+                        realm.copyFromRealm(user)
+                    }
+
+        }
+
+    }
+
+    fun saveProfile(profile: User) {
+
+        Realm.getDefaultInstance().use { realm ->
+
+            realm.beginTransaction()
+            realm.copyToRealmOrUpdate(profile)
+            realm.commitTransaction()
+
+        }
+    }
 }

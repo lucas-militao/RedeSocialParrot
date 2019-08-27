@@ -7,6 +7,7 @@ import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ProfileAPI {
 
@@ -15,9 +16,9 @@ interface ProfileAPI {
             @Header (BaseNetwork.TOKEN) accessToken: String? = SessionController.token
     ): Observable<MutableList<User>>
 
-    @GET("/usuario/?busca={search}")
+    @GET("/usuario/")
     fun requestProfile(
-            @Path ("search") search: String,
+            @Query("busca") busca: String,
             @Header (BaseNetwork.TOKEN) accessToken: String? = SessionController.token
     ): Observable<MutableList<User>>
 
