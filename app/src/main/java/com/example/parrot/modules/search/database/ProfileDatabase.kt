@@ -32,17 +32,28 @@ object ProfileDatabase {
 
     }
 
-    fun getProfile(profile: User) {
+    fun getProfile(profileID: Int): User? {
 
-        Realm.getDefaultInstance().use { realm ->
+        return Realm.getDefaultInstance().use { realm ->
 
             realm.beginTransaction()
             realm.where(User::class.java)
-                    .equalTo(User::id.name, profile.id)
+                    .equalTo(User::id.name, profileID)
                     .findFirst()?.let { user ->
                         realm.copyFromRealm(user)
                     }
 
+        }
+
+    }
+
+    fun getProfile2(id: Int): User? {
+        val realm = Realm.getDefaultInstance()
+
+        realm.where(User::class.java).equalTo(User::id.name, id).findFirst()?.let {
+            return realm.copyFromRealm(it)
+        } ?: kotlin.run {
+            return null
         }
 
     }

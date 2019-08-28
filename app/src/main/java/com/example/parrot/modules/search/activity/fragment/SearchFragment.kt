@@ -1,5 +1,6 @@
 package com.example.parrot.modules.search.activity.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,10 +14,12 @@ import com.example.parrot.PrincipalActivity
 import com.example.parrot.R
 import com.example.parrot.inTransaction
 import com.example.parrot.modules.profile.activity.ProfileFragment
+import com.example.parrot.modules.search.activity.ProfileResult
 import com.example.parrot.modules.search.adapter.ProfileAdapter
 import com.example.parrot.modules.search.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.activity_principal.*
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.fragment_profile_menu.*
 import kotlinx.android.synthetic.main.fragment_search_menu.*
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -26,6 +29,8 @@ class SearchFragment: Fragment() {
 
     lateinit var profileAdapter: ProfileAdapter
 
+    lateinit var intent: Intent
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_search_menu, container, false)
     }
@@ -34,6 +39,8 @@ class SearchFragment: Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
+
+        intent = Intent(activity!!, ProfileResult::class.java)
 
         setupView()
         subscribeUI()
@@ -45,8 +52,10 @@ class SearchFragment: Fragment() {
 
         profileAdapter = ProfileAdapter(
                 {
+                    var userID = it.id
+                    intent.putExtra("userID", userID.toString())
                     profileViewModel.saveProfile(it)
-
+                    startActivity(intent)
                 }
         )
 

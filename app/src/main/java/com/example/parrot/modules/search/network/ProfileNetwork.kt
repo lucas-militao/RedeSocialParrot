@@ -22,4 +22,12 @@ object ProfileNetwork : BaseNetwork() {
         doRequest(API, onSuccess, onError) { requestProfile(search) }
     }
 
+    fun requestProfile(
+            id: Int,
+            onSuccess: (result: User) -> Unit,
+            onError: () -> Unit
+    ) {
+        doRequest(API, onSuccess, onError) { requestProfile(id) }
+    }
+
 }

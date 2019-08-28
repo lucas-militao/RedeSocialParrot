@@ -24,6 +24,10 @@
             android:name=".PrincipalActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        
+        <activity android:name=".modules.search.activity.ProfileResult"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
 
         <activity android:name=".modules.authentication.activity.LoginActivity">
             <intent-filter>

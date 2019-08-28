@@ -15,6 +15,9 @@ class ProfileViewModel : BaseViewModel() {
     private val _profiles = MutableLiveData<List<User>>()
     val profiles: LiveData<List<User>> = _profiles
 
+    private val _profile = MutableLiveData<User>()
+    val profile: LiveData<User> = _profile
+
     var onSearchProfileSucessful = SingleLiveEvent<Void>()
     val onProfileRequestSucessful = MutableLiveData<BaseNetwork.RequestStatus>()
 
@@ -46,9 +49,19 @@ class ProfileViewModel : BaseViewModel() {
     }
 
     fun saveProfile(profile: User) {
-
         ProfileBusiness.saveProfile(profile)
+    }
 
+    fun getProfile(profileID: Int) {
+        _profile.value = ProfileBusiness.getProfileFromDB(profileID)
+
+        ProfileBusiness.getProfile(profileID,
+                onSuccess = {
+                    _profile.value = it
+                },
+                onError = {
+                    print("Erro")
+                })
     }
 
 }

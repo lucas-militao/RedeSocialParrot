@@ -40,6 +40,20 @@ object ProfileBusiness {
 
     }
 
+    fun getProfile(profileID: Int,
+                   onSuccess: (user: User?) -> Unit,
+                   onError: (message: String) -> Unit) {
 
+        ProfileNetwork.requestProfile(profileID,
+                onSuccess = {
+                    onSuccess(ProfileDatabase.getProfile2(profileID))
+                },
+                onError = {
+                    onError("Erro")
+                })
+
+    }
+
+    fun getProfileFromDB(id: Int): User? = ProfileDatabase.getProfile2(id)
 
 }

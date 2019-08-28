@@ -29,5 +29,4 @@ class ProfileAdapter(var clickProfile: (profile: User) -> Unit) : RecyclerView.A
         notifyDataSetChanged()
     }
 
-
 }

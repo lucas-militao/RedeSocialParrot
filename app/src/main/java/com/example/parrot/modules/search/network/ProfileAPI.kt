@@ -22,4 +22,10 @@ interface ProfileAPI {
             @Header (BaseNetwork.TOKEN) accessToken: String? = SessionController.token
     ): Observable<MutableList<User>>
 
+    @GET("/usuario/{id}")
+    fun requestProfile(
+            @Path("id") id: Int,
+            @Header (BaseNetwork.TOKEN) accessToken: String? = SessionController.token
+    ): Observable<User>
+
 }
