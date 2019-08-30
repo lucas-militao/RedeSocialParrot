@@ -29,6 +29,7 @@ object PostDatabase {
                     }
 
         }
+
     }
 
     fun getPost(postID : Int): Post? {

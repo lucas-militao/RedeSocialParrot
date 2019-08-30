@@ -14,12 +14,14 @@ import kotlinx.android.synthetic.main.fragment_profile_menu.*
 class ProfileResult : BaseActivity() {
 
     lateinit var profileViewModel: ProfileViewModel
+    lateinit var postViewModel: PostViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_result)
 
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        postViewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
 
         profileViewModel.getProfile(intent.getStringExtra("userID").toInt())
 

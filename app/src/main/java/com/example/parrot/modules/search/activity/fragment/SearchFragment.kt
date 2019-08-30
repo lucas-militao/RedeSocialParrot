@@ -10,18 +10,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.parrot.PrincipalActivity
 import com.example.parrot.R
-import com.example.parrot.inTransaction
-import com.example.parrot.modules.profile.activity.ProfileFragment
+import com.example.parrot.modules.post.adapter.PostAdapter
 import com.example.parrot.modules.search.activity.ProfileResult
 import com.example.parrot.modules.search.adapter.ProfileAdapter
 import com.example.parrot.modules.search.viewmodel.ProfileViewModel
-import kotlinx.android.synthetic.main.activity_principal.*
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.android.synthetic.main.fragment_profile_menu.*
 import kotlinx.android.synthetic.main.fragment_search_menu.*
-import org.jetbrains.anko.support.v4.startActivity
 
 class SearchFragment: Fragment() {
 
@@ -52,9 +46,8 @@ class SearchFragment: Fragment() {
 
         profileAdapter = ProfileAdapter(
                 {
-                    var userID = it.id
-                    intent.putExtra("userID", userID.toString())
-                    profileViewModel.saveProfile(it)
+                    intent.putExtra("userID", it.id.toString())
+                    profileViewModel.getProfile(it.id)
                     startActivity(intent)
                 }
         )

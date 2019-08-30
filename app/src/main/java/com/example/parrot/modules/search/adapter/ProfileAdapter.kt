@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.parrot.R
 import com.example.parrot.modules.authentication.model.User
+import com.example.parrot.modules.search.model.Profile
 import com.example.parrot.modules.search.viewholder.ProfileViewHolder
 
 class ProfileAdapter(var clickProfile: (profile: User) -> Unit) : RecyclerView.Adapter<ProfileViewHolder>(){
@@ -28,5 +29,4 @@ class ProfileAdapter(var clickProfile: (profile: User) -> Unit) : RecyclerView.A
         users = list
         notifyDataSetChanged()
     }
-
 }

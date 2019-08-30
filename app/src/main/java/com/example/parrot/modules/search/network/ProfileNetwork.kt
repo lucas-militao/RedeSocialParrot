@@ -2,6 +2,8 @@ package com.example.parrot.modules.search.network
 
 import com.example.parrot.core.network.BaseNetwork
 import com.example.parrot.modules.authentication.model.User
+import com.example.parrot.modules.post.model.Post
+import com.example.parrot.modules.search.model.Profile
 
 object ProfileNetwork : BaseNetwork() {
 
@@ -24,7 +26,7 @@ object ProfileNetwork : BaseNetwork() {
 
     fun requestProfile(
             id: Int,
-            onSuccess: (result: User) -> Unit,
+            onSuccess: (profile: Profile) -> Unit,
             onError: () -> Unit
     ) {
         doRequest(API, onSuccess, onError) { requestProfile(id) }

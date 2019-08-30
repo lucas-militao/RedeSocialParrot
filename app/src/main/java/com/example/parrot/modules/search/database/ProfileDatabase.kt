@@ -1,9 +1,12 @@
 package com.example.parrot.modules.search.database
 
 import com.example.parrot.modules.authentication.model.User
+import com.example.parrot.modules.post.model.Post
+import com.example.parrot.modules.search.model.Profile
 import io.realm.Case
 import io.realm.Realm
 import io.realm.Sort
+import io.realm.kotlin.where
 
 object ProfileDatabase {
 
@@ -32,25 +35,10 @@ object ProfileDatabase {
 
     }
 
-    fun getProfile(profileID: Int): User? {
-
-        return Realm.getDefaultInstance().use { realm ->
-
-            realm.beginTransaction()
-            realm.where(User::class.java)
-                    .equalTo(User::id.name, profileID)
-                    .findFirst()?.let { user ->
-                        realm.copyFromRealm(user)
-                    }
-
-        }
-
-    }
-
-    fun getProfile2(id: Int): User? {
+    fun getProfile(id: Int): Profile? {
         val realm = Realm.getDefaultInstance()
 
-        realm.where(User::class.java).equalTo(User::id.name, id).findFirst()?.let {
+        realm.where(Profile::class.java).equalTo(Profile::id.name, id).findFirst()?.let {
             return realm.copyFromRealm(it)
         } ?: kotlin.run {
             return null
@@ -68,4 +56,17 @@ object ProfileDatabase {
 
         }
     }
+
+    fun saveProfile(profile: Profile) {
+
+        Realm.getDefaultInstance().use { realm ->
+
+            realm.beginTransaction()
+            realm.copyToRealmOrUpdate(profile)
+            realm.commitTransaction()
+
+        }
+    }
+
+
 }

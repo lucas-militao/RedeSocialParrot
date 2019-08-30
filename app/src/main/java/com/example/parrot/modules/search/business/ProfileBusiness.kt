@@ -1,13 +1,15 @@
 package com.example.parrot.modules.search.business
 
 import com.example.parrot.modules.authentication.model.User
+import com.example.parrot.modules.post.model.Post
 import com.example.parrot.modules.search.database.ProfileDatabase
+import com.example.parrot.modules.search.model.Profile
 import com.example.parrot.modules.search.network.ProfileNetwork
 
 object ProfileBusiness {
 
     fun getProfiles(
-            onSuccess: (users: List<User>) -> Unit,
+            onSuccess: (profiles: List<User>) -> Unit,
             onError: (message: String) -> Unit
     ) {
 
@@ -35,18 +37,18 @@ object ProfileBusiness {
     }
 
     fun saveProfile(profile: User) {
-
         ProfileDatabase.saveProfile(profile)
-
     }
 
     fun getProfile(profileID: Int,
-                   onSuccess: (user: User?) -> Unit,
+                   onSuccess: (profile: Profile?) -> Unit,
                    onError: (message: String) -> Unit) {
 
-        ProfileNetwork.requestProfile(profileID,
+        ProfileNetwork.requestProfile( profileID,
                 onSuccess = {
-                    onSuccess(ProfileDatabase.getProfile2(profileID))
+                    it.id = it.usuario!!.id
+                    ProfileDatabase.saveProfile(it)
+                    onSuccess(it)
                 },
                 onError = {
                     onError("Erro")
@@ -54,6 +56,6 @@ object ProfileBusiness {
 
     }
 
-    fun getProfileFromDB(id: Int): User? = ProfileDatabase.getProfile2(id)
+    fun getProfileFromDB(id: Int): Profile? = ProfileDatabase.getProfile(id)
 
 }

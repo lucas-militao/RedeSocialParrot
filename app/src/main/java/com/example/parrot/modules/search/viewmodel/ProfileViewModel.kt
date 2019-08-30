@@ -8,7 +8,9 @@ import com.example.parrot.core.network.BaseNetwork.RequestStatus.STARTED
 import com.example.parrot.core.viewmodel.BaseViewModel
 import com.example.parrot.livedata.SingleLiveEvent
 import com.example.parrot.modules.authentication.model.User
+import com.example.parrot.modules.post.model.Post
 import com.example.parrot.modules.search.business.ProfileBusiness
+import com.example.parrot.modules.search.model.Profile
 
 class ProfileViewModel : BaseViewModel() {
 
@@ -17,6 +19,9 @@ class ProfileViewModel : BaseViewModel() {
 
     private val _profile = MutableLiveData<User>()
     val profile: LiveData<User> = _profile
+
+    private val _posts = MutableLiveData<List<Post>>()
+    val posts: LiveData<List<Post>> = _posts
 
     var onSearchProfileSucessful = SingleLiveEvent<Void>()
     val onProfileRequestSucessful = MutableLiveData<BaseNetwork.RequestStatus>()
@@ -48,19 +53,28 @@ class ProfileViewModel : BaseViewModel() {
                 })
     }
 
-    fun saveProfile(profile: User) {
+    fun saveProfileDB(profile: User) {
         ProfileBusiness.saveProfile(profile)
     }
 
+    fun getProfileFromDB(id: Int) {
+        ProfileBusiness.getProfileFromDB(id)
+    }
+
     fun getProfile(profileID: Int) {
-        _profile.value = ProfileBusiness.getProfileFromDB(profileID)
+
+        onProfileRequestSucessful.value = STARTED
 
         ProfileBusiness.getProfile(profileID,
                 onSuccess = {
-                    _profile.value = it
+                    _profile.value = it?.usuario
+                    _posts.value = it?.postagens
+                    onSearchProfileSucessful.call()
+                    onProfileRequestSucessful.value = FINISHED
                 },
                 onError = {
                     print("Erro")
+                    onProfileRequestSucessful.value = FINISHED
                 })
     }
 
