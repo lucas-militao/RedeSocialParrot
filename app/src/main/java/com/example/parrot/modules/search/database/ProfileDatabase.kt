@@ -3,6 +3,7 @@ package com.example.parrot.modules.search.database
 import com.example.parrot.modules.authentication.model.User
 import com.example.parrot.modules.post.model.Post
 import com.example.parrot.modules.search.model.Profile
+import com.example.parrot.modules.search.model.Solicitacao
 import io.realm.Case
 import io.realm.Realm
 import io.realm.Sort
@@ -66,6 +67,29 @@ object ProfileDatabase {
             realm.commitTransaction()
 
         }
+    }
+
+    fun saveSolicitation(solicitacao: Solicitacao) {
+
+        Realm.getDefaultInstance().use { realm ->
+
+            realm.beginTransaction()
+            realm.copyToRealmOrUpdate(solicitacao)
+            realm.commitTransaction()
+        }
+
+    }
+
+    fun getSolicitacao(id: Int) : Solicitacao {
+
+        val realm = Realm.getDefaultInstance()
+
+        return realm.where(Solicitacao::class.java)
+                .equalTo(Solicitacao::id.name, id)
+                .findFirst().let { solicitacao ->
+                    realm.copyFromRealm(solicitacao)!!
+                }
+
     }
 
 

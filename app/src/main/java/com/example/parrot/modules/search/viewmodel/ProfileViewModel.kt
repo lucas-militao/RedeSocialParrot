@@ -10,7 +10,7 @@ import com.example.parrot.livedata.SingleLiveEvent
 import com.example.parrot.modules.authentication.model.User
 import com.example.parrot.modules.post.model.Post
 import com.example.parrot.modules.search.business.ProfileBusiness
-import com.example.parrot.modules.search.model.Profile
+import com.example.parrot.modules.search.model.Solicitacao
 
 class ProfileViewModel : BaseViewModel() {
 
@@ -19,6 +19,9 @@ class ProfileViewModel : BaseViewModel() {
 
     private val _profile = MutableLiveData<User>()
     val profile: LiveData<User> = _profile
+
+    private val _invitations = MutableLiveData<List<User>>()
+    val invitations: LiveData<List<User>> = _invitations
 
     private val _posts = MutableLiveData<List<Post>>()
     val posts: LiveData<List<Post>> = _posts
@@ -76,6 +79,35 @@ class ProfileViewModel : BaseViewModel() {
                     print("Erro")
                     onProfileRequestSucessful.value = FINISHED
                 })
+    }
+
+    fun solicitation(id: Int) {
+        ProfileBusiness.solicitation(id)
+    }
+
+    fun getSolicitationList() {
+        ProfileBusiness.listaSolicitacao(
+                onSuccess = {
+                },
+                onError = {
+                    print(it)
+                }
+        )
+    }
+
+    fun getInvitationList() {
+        ProfileBusiness.listaConvites(
+                onSuccess = {
+                    _invitations.value = it
+                },
+                onError = {
+                    print(it)
+                }
+        )
+    }
+
+    fun getSolicitacaoDB(id: Int) : Solicitacao {
+        return getSolicitacaoDB(id)
     }
 
 }

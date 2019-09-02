@@ -1,8 +1,9 @@
 package com.example.parrot.modules.search.model
 
+import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
-class Solicitacao {
+open class Solicitacao : RealmObject(){
 
     @PrimaryKey
     var id: Int = 0

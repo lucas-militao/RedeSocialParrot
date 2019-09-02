@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.parrot.R
 import com.example.parrot.modules.authentication.model.User
 import com.example.parrot.modules.post.adapter.PostAdapter
-import com.example.parrot.modules.post.model.Post
 import com.example.parrot.modules.post.viewmodel.PostViewModel
 import com.example.parrot.modules.search.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_profile_menu.*
@@ -35,7 +34,7 @@ class ProfileFragment: Fragment() {
         subscribeUI()
     }
 
-    fun setupProfileInfo(profile: User) {
+    fun setupView(profile: User) {
         postAdapter = PostAdapter(
                 {},
                 {})
@@ -44,6 +43,14 @@ class ProfileFragment: Fragment() {
 
         userNick.text = profile.username
         followers.text = profile.amigos?.size.toString() + " amigos"
+
+        solicitationButton.setOnClickListener {
+            profileViewModel.solicitation(profile.id)
+            profileViewModel.getSolicitationList()
+
+            solicitationButton.text = "solicitado.."
+        }
+
     }
 
 
@@ -53,7 +60,7 @@ class ProfileFragment: Fragment() {
             profile.observe(this@ProfileFragment, Observer { user ->
 
                 user?.let {
-                    setupProfileInfo(it)
+                    setupView(it)
                 }
 
             })
@@ -66,17 +73,8 @@ class ProfileFragment: Fragment() {
 
             })
         }
-
     }
 
-    fun setupView() {
 
-        solicitationButton.setOnClickListener {
-
-
-
-        }
-
-    }
 
 }

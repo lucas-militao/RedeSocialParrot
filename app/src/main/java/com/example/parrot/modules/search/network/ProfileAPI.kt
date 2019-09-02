@@ -5,6 +5,7 @@ import com.example.parrot.core.network.BaseNetwork
 import com.example.parrot.modules.authentication.model.User
 import com.example.parrot.modules.post.model.Post
 import com.example.parrot.modules.search.model.Profile
+import com.example.parrot.modules.search.model.Solicitacao
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -14,7 +15,17 @@ interface ProfileAPI {
     fun requestFriend(
             @Path("id") id: Int,
             @Header (BaseNetwork.TOKEN) accessToken: String? = SessionController.token
-    )
+    ): Observable<Solicitacao>
+
+    @GET("/solicitacoes/enviadas")
+    fun requestSolicitationList(
+            @Header (BaseNetwork.TOKEN) accessToken: String? = SessionController.token
+    ): Observable<MutableList<User>>
+
+    @GET("/solicitacoes/recebidas")
+    fun requestInvitationList(
+            @Header (BaseNetwork.TOKEN) accessToken: String? = SessionController.token
+    ): Observable<MutableList<User>>
 
     @GET("/usuario")
     fun requestProfiles(
