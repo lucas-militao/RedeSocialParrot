@@ -23,11 +23,14 @@ class ProfileResult : BaseActivity() {
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         postViewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
 
-        profileViewModel.getProfile(intent.getStringExtra("userID").toInt())
+//        profileViewModel.getProfile(intent.getStringExtra("userID").toInt())
+
 
         supportFragmentManager.inTransaction {
 
-            replace(R.id.fragmentContainer, ProfileFragment())
+            replace(R.id.fragmentContainer, ProfileFragment().apply {
+                arguments = intent.extras
+            })
 
         }
     }

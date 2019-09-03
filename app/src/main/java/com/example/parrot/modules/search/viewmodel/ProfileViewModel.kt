@@ -17,14 +17,16 @@ class ProfileViewModel : BaseViewModel() {
     private val _profiles = MutableLiveData<List<User>>()
     val profiles: LiveData<List<User>> = _profiles
 
-    private val _profile = MutableLiveData<User>()
+    private val _profile = MutableLiveData<User>() //recebe o perfil clicado
     val profile: LiveData<User> = _profile
+
+    private val _posts = MutableLiveData<List<Post>>() //recebe a lista de posts do perfil clicado
+    val posts: LiveData<List<Post>> = _posts
 
     private val _invitations = MutableLiveData<List<User>>()
     val invitations: LiveData<List<User>> = _invitations
 
-    private val _posts = MutableLiveData<List<Post>>()
-    val posts: LiveData<List<Post>> = _posts
+
 
     var onSearchProfileSucessful = SingleLiveEvent<Void>()
     val onProfileRequestSucessful = MutableLiveData<BaseNetwork.RequestStatus>()

@@ -12,7 +12,8 @@ import com.example.parrot.modules.post.viewholder.PostViewHolder
 import com.example.parrot.modules.post.viewmodel.PostViewModel
 import kotlinx.android.synthetic.main.post_holder.view.*
 
-class PostAdapter(var onCurtir: (post: Post) -> Unit, var onDelete: (post: Post) -> Unit) : RecyclerView.Adapter<PostViewHolder>() {
+class PostAdapter(var onCurtir: (post: Post) -> Unit, var onDelete: (post: Post) -> Unit)
+    : RecyclerView.Adapter<PostViewHolder>() {
 
      private var posts: List<Post> = listOf()
 

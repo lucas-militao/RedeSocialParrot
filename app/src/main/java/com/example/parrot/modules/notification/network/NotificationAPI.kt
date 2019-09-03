@@ -7,7 +7,7 @@ import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Header
 
-interface notificationAPI {
+interface NotificationAPI {
 
     @GET("/solicitacoes/recebidas")
     fun requestInvitations(

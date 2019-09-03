@@ -28,10 +28,12 @@ class ProfileFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
-        postViewModel = ViewModelProviders.of(activity!!).get(PostViewModel::class.java)
+        profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        postViewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
 
         subscribeUI()
+
+        arguments?.getInt("userID")?.let { profileViewModel.getProfile(it) }
     }
 
     fun setupView(profile: User) {

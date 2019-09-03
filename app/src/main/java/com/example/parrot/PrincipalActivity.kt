@@ -2,6 +2,7 @@ package com.example.parrot
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
+import com.example.parrot.core.SessionController
 import com.example.parrot.core.activity.BaseActivity
 import com.example.parrot.modules.post.activity.fragment.HomeFragment
 import com.example.parrot.modules.notification.activity.fragment.NotificationFragment
@@ -74,7 +75,15 @@ class PrincipalActivity: BaseActivity() {
                     supportFragmentManager.inTransaction {
 
                         toolbar.title = "Perfil"
-                        replace(R.id.fragmentContainer, ProfileFragment())
+                        replace(R.id.fragmentContainer, ProfileFragment().apply {
+
+                            val bundle = Bundle().apply {
+                                SessionController.user?.id?.let { putInt("userID", it) }
+                            }
+
+                            arguments = bundle
+
+                        })
 
                     }
                     true

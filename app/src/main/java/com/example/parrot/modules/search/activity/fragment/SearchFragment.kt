@@ -46,7 +46,7 @@ class SearchFragment: Fragment() {
 
         profileAdapter = ProfileAdapter(
                 {
-                    intent.putExtra("userID", it.id.toString())
+                    intent.putExtra("userID", it.id.toInt())
                     profileViewModel.getProfile(it.id)
                     startActivity(intent)
                 }
