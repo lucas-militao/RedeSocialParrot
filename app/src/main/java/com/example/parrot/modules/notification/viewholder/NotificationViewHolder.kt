@@ -7,9 +7,13 @@ import kotlinx.android.synthetic.main.notification_holder.view.*
 
 class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bindView(user: User) {
+    fun bindView(user: User, acceptOnClick : (id: Int) -> Unit) {
 
         itemView.userNick.text = user.username
+
+        itemView.confirmButton.setOnClickListener {
+            acceptOnClick(user.id)
+        }
         
     }
 

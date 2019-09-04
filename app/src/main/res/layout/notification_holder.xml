@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/ic_profile_photo"
         android:background="@drawable/shape_circle_notification"
+        android:src="@drawable/ic_profile_photo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="16dp"
         android:text="Aceitar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNick" />
@@ -41,13 +41,13 @@
         android:id="@+id/declineButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:backgroundTint="#FFF"
         android:text="Recusar"
         android:textColor="#B9B9B9"
         app:layout_constraintEnd_toStartOf="@+id/confirmButton"
-        app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toEndOf="@+id/profilePhoto"
         app:layout_constraintTop_toBottomOf="@+id/userNick" />
 

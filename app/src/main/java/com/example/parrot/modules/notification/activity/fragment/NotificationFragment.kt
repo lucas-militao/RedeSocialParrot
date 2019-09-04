@@ -34,8 +34,13 @@ class NotificationFragment: Fragment() {
 
     fun setupView() {
 
-        notificationAdapter = NotificationAdapter()
+        notificationAdapter = NotificationAdapter(
+                {
+                    notificationViewModel.acceptInvitation(it)
+                }
+        )
         notificationViewModel.getNotifications()
+
 
     }
 

@@ -8,10 +8,18 @@ object NotificationNetwork : BaseNetwork() {
     private val API by lazy { getRetrofitBuilder().create(NotificationAPI::class.java) }
 
     fun requestInvitationList (
-            onSuccess: (list: List<User>) -> Unit,
+            onSuccess: (list: MutableList<User>) -> Unit,
             onError: () -> Unit
     ) {
         doRequest(API, onSuccess, onError) { API.requestInvitations() }
+    }
+
+    fun acceptInvitation (
+            id: Int,
+            onSuccess: (friend: User) -> Unit,
+            onError: () -> Unit
+    ) {
+        doRequest(API, onSuccess, onError) { API.acceptInvitation(id) }
     }
 
 }

@@ -7,7 +7,7 @@ import com.example.parrot.R
 import com.example.parrot.modules.authentication.model.User
 import com.example.parrot.modules.notification.viewholder.NotificationViewHolder
 
-class NotificationAdapter: RecyclerView.Adapter<NotificationViewHolder>() {
+class NotificationAdapter(var acceptOnClick: (id: Int) -> Unit): RecyclerView.Adapter<NotificationViewHolder>() {
 
     private var notifications: List<User> = listOf()
 
@@ -21,7 +21,7 @@ class NotificationAdapter: RecyclerView.Adapter<NotificationViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
-        holder.bindView(notifications[position])
+        holder.bindView(notifications[position], acceptOnClick)
     }
 
     fun updateNotificationList(list: List<User>) {

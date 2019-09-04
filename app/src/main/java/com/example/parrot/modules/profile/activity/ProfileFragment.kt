@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.parrot.R
+import com.example.parrot.core.SessionController
 import com.example.parrot.modules.authentication.model.User
 import com.example.parrot.modules.post.adapter.PostAdapter
 import com.example.parrot.modules.post.viewmodel.PostViewModel
@@ -27,6 +28,9 @@ class ProfileFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        userNick.text = SessionController.user!!.username
+        followers.text = SessionController.user!!.amigos!!.size.toString() + " amigos"
 
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         postViewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
