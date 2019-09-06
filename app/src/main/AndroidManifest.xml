@@ -29,6 +29,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
+        <activity android:name=".modules.profile.activity.ProfileConfigActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme" />
+
+
         <activity android:name=".modules.authentication.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

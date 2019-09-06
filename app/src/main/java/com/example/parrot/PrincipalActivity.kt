@@ -10,7 +10,9 @@ import com.example.parrot.modules.profile.activity.ProfileFragment
 import com.example.parrot.modules.search.activity.fragment.SearchFragment
 import com.example.parrot.modules.authentication.business.AuthenticationBusiness
 import com.example.parrot.modules.post.viewmodel.PostViewModel
+import com.example.parrot.modules.profile.activity.ProfileConfigActivity
 import kotlinx.android.synthetic.main.activity_principal.*
+import org.jetbrains.anko.startActivity
 
 class PrincipalActivity: BaseActivity() {
 
@@ -80,9 +82,7 @@ class PrincipalActivity: BaseActivity() {
                             val bundle = Bundle().apply {
                                 SessionController.user?.id?.let { putInt("userID", it) }
                             }
-
                             arguments = bundle
-
                         })
 
                     }
@@ -113,6 +113,10 @@ class PrincipalActivity: BaseActivity() {
 
     fun setupActivity() {
         setSupportActionBar(toolbar)
+    }
+
+    private fun configProfile() {
+        startActivity<ProfileConfigActivity>()
     }
 
 }

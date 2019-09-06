@@ -1,5 +1,6 @@
 package com.example.parrot.modules.profile.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,8 +30,7 @@ class ProfileFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        userNick.text = SessionController.user!!.username
-        followers.text = SessionController.user!!.amigos!!.size.toString() + " amigos"
+//        intent = Intent(activity!!, ProfileConfigActivity::class.java)
 
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         postViewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
@@ -50,11 +50,22 @@ class ProfileFragment: Fragment() {
         userNick.text = profile.username
         followers.text = profile.amigos?.size.toString() + " amigos"
 
-        solicitationButton.setOnClickListener {
-            profileViewModel.solicitation(profile.id)
-            profileViewModel.getSolicitationList()
+        if (profile.id != SessionController.user?.id) {
 
-            solicitationButton.text = "solicitado.."
+            solicitationButton.setOnClickListener {
+
+                profileViewModel.solicitation(profile.id)
+                profileViewModel.getSolicitationList()
+                solicitationButton.text = "solicitado.."
+
+            }
+
+        } else {
+
+            solicitationButton.setOnClickListener {
+                startActivity(Intent(activity!!, ProfileConfigActivity::class.java))
+            }
+
         }
 
     }
