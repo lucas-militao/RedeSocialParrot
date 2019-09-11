@@ -12,6 +12,7 @@ import com.example.parrot.modules.authentication.business.AuthenticationBusiness
 import com.example.parrot.modules.post.viewmodel.PostViewModel
 import com.example.parrot.modules.profile.activity.ProfileConfigActivity
 import kotlinx.android.synthetic.main.activity_principal.*
+import kotlinx.android.synthetic.main.fragment_profile_menu.*
 import org.jetbrains.anko.startActivity
 
 class PrincipalActivity: BaseActivity() {

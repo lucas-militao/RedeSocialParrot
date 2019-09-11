@@ -40,6 +40,8 @@ buildscript {
 
 dependencies {
 
+    implementation 'com.mikhaellopez:circularimageview:4.0.2'
+
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 

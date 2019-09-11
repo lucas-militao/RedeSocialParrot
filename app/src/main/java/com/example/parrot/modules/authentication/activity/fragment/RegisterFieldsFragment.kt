@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_register_fields.*
+import kotlinx.android.synthetic.main.fragment_register_fields.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.parrot.R
@@ -27,7 +27,7 @@ class RegisterFieldsFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.activity_register_fields, container, false)
+        return inflater.inflate(R.layout.fragment_register_fields, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

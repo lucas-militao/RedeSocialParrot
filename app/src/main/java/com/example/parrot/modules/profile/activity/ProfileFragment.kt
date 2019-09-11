@@ -1,6 +1,5 @@
 package com.example.parrot.modules.profile.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +14,7 @@ import com.example.parrot.modules.post.adapter.PostAdapter
 import com.example.parrot.modules.post.viewmodel.PostViewModel
 import com.example.parrot.modules.search.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.fragment_profile_menu.*
+import org.jetbrains.anko.support.v4.startActivity
 
 class ProfileFragment: Fragment() {
 
@@ -29,8 +29,6 @@ class ProfileFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-//        intent = Intent(activity!!, ProfileConfigActivity::class.java)
 
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         postViewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
@@ -52,18 +50,22 @@ class ProfileFragment: Fragment() {
 
         if (profile.id != SessionController.user?.id) {
 
-            solicitationButton.setOnClickListener {
+            configButton.text = "Solicitar"
+
+            configButton.setOnClickListener {
 
                 profileViewModel.solicitation(profile.id)
                 profileViewModel.getSolicitationList()
-                solicitationButton.text = "solicitado.."
+                configButton.text = "solicitado.."
 
             }
 
         } else {
 
-            solicitationButton.setOnClickListener {
-                startActivity(Intent(activity!!, ProfileConfigActivity::class.java))
+            configButton.text = "Configurações"
+
+            configButton.setOnClickListener {
+                startActivity<ProfileConfigActivity>()
             }
 
         }

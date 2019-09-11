@@ -46,6 +46,7 @@ object AuthenticationNetwork : BaseNetwork() {
             username: String,
             email: String,
             password: String,
+            foto: String,
             onSuccess: () -> Unit,
             onError: () -> Unit
     ) {
@@ -56,7 +57,7 @@ object AuthenticationNetwork : BaseNetwork() {
             this.email = email
             this.password = password
             this.passwordConfirmation = password
-            this.foto = ""
+            this.foto = foto
         }
 
         API.requestRegisterUser(userWrapper)
@@ -70,6 +71,43 @@ object AuthenticationNetwork : BaseNetwork() {
                             onError()
                         }
                 )
+
+    }
+
+    fun updateUser(nome: String,
+                   username: String,
+                   email: String,
+                   senha: String,
+                   foto: String,
+                   onSuccess: (user: User) -> Unit,
+                   onError: () -> Unit) {
+
+        val userWrapper = UserWrapper().apply {
+            this.nome = nome
+            this.email = email
+            this.foto = ""
+            this.password = senha
+            this.passwordConfirmation = senha
+            this.username = username
+        }
+
+
+        API.requestUpdateUser(userWrapper).enqueue(object : retrofit2.Callback<User> {
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                onError()
+                t.printStackTrace()
+            }
+
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        onSuccess(it)
+                    }
+                } else {
+                    onError()
+                }
+            }
+        })
 
     }
 }

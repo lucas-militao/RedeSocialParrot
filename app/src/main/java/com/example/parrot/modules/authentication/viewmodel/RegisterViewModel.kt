@@ -19,6 +19,7 @@ class RegisterViewModel : BaseViewModel() {
     var email: String = ""
     var password: String = ""
     var passwordConfirmation: String = ""
+    var foto: String = ""
 
     val errorMessages = mutableListOf<String>()
 
@@ -123,6 +124,7 @@ class RegisterViewModel : BaseViewModel() {
                 this.username,
                 this.email,
                 this.password,
+                this.foto,
 
                 onSuccess = {
                     onRegisterUserSuccessful.call()

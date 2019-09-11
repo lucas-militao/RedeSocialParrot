@@ -2,6 +2,7 @@ package com.example.parrot.modules.authentication.business
 
 import android.util.Patterns
 import com.example.parrot.core.SessionController
+import com.example.parrot.core.SessionController.user
 import com.example.parrot.core.network.BaseNetwork
 //import com.example.parrot.core.network.BaseNetwork.Companion.HEADER_CLIENT
 import com.example.parrot.modules.authentication.database.AuthenticationDatabase
@@ -38,11 +39,12 @@ object AuthenticationBusiness {
             username: String,
             email: String,
             password: String,
+            foto: String,
             onSuccess: () -> Unit,
             onError: (message: String) -> Unit
     ) {
 
-        AuthenticationNetwork.requestRegisterUser(nome, username, email, password,
+        AuthenticationNetwork.requestRegisterUser(nome, username, email, password, foto,
                 onSuccess = {
                     onSuccess()
                 },
@@ -79,6 +81,31 @@ object AuthenticationBusiness {
                 onError = {
                     onError("Falha no login")
                 })
+    }
+
+    fun doUpdate(
+            nome: String,
+            email: String,
+            username: String,
+            senha: String,
+            foto: String
+    ) {
+
+        AuthenticationNetwork.updateUser(
+                nome,
+                username,
+                email,
+                senha,
+                foto,
+                onSuccess = { user ->
+                    AuthenticationDatabase.saveUser(user)
+                    SessionController.user = user
+                },
+                onError = {
+                    print("Erro")
+                }
+        )
+
     }
 
     fun doLogout() {

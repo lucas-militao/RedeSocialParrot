@@ -45,4 +45,16 @@ class AuthenticationViewModel : BaseViewModel() {
                     onError.value = it
                 })
     }
+
+    fun updateUser(
+            nome: String,
+            username: String,
+            senha: String,
+            email: String,
+            foto: String
+    ) {
+
+        AuthenticationBusiness.doUpdate(nome, email, username, senha, foto)
+
+    }
 }
