@@ -3,15 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
-apply plugin: 'realm-android'
+
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.parrot"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -39,6 +38,9 @@ buildscript {
 }
 
 dependencies {
+
+    implementation 'com.github.bumptech.glide:glide:4.0.0'
+    kapt 'com.github.bumptech.glide:compiler:4.4.0'
 
     implementation 'com.mikhaellopez:circularimageview:4.0.2'
 

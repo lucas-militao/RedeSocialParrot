@@ -1,5 +1,6 @@
 package com.example.parrot.modules.profile.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProviders
@@ -56,6 +57,12 @@ class ProfileConfigActivity : BaseActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+
     }
 
 }

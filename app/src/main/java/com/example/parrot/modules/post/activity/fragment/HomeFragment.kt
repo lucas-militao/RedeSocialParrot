@@ -1,6 +1,7 @@
 package com.example.parrot.modules.post.activity.fragment
 
 import android.os.Bundle
+import android.se.omapi.Session
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.parrot.R
+import com.example.parrot.core.SessionController
 import com.example.parrot.modules.post.adapter.PostAdapter
 import com.example.parrot.modules.post.database.PostDatabase
 import com.example.parrot.modules.post.model.Post
@@ -45,6 +48,10 @@ class HomeFragment: Fragment() {
     }
 
     private fun setupView() {
+
+        Glide.with(this)
+            .load(SessionController.user?.foto)
+            .into(icPhotoPost)
 
         postAdapter = PostAdapter(
             onCurtir = { postViewModel.curtir(it) },
