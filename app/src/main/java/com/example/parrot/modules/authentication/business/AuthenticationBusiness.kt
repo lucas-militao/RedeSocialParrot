@@ -8,6 +8,7 @@ import com.example.parrot.core.network.BaseNetwork
 import com.example.parrot.modules.authentication.database.AuthenticationDatabase
 import com.example.parrot.modules.authentication.model.SessionAuthentication
 import com.example.parrot.modules.authentication.network.AuthenticationNetwork
+import okhttp3.ResponseBody
 
 //restrições das entradas para login e método para realizar login onde AuthenticationNetwork.requestLogin é chamado
 object AuthenticationBusiness {
@@ -109,8 +110,18 @@ object AuthenticationBusiness {
     }
 
     fun doLogout() {
-
         AuthenticationDatabase.clearAppData()
+    }
+
+    fun saveImage(filePath: String) {
+
+        AuthenticationNetwork.uploadToServer(filePath,
+            onSuccess = {
+
+            },
+            onError = {
+
+            })
 
     }
 }

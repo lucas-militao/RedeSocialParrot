@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_register_photo.*
 import org.jetbrains.anko.support.v4.toast
 import android.database.Cursor
 import android.graphics.BitmapFactory
+import com.example.parrot.modules.authentication.business.AuthenticationBusiness
 
 @Suppress("DEPRECATION")
 class RegisterPhotoFragment : Fragment() {
@@ -63,7 +64,9 @@ class RegisterPhotoFragment : Fragment() {
 
                 }
                 else {
-                    toast("Necessário conceder acesso as fotos da galeria")
+                    ActivityCompat.requestPermissions(activity!!,
+                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                        GALLERY_REQUEST_CODE)
                 }
             } else {
                 pickFromGallery()
@@ -129,6 +132,7 @@ class RegisterPhotoFragment : Fragment() {
                     profileImage.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString))
 
                     registerViewModel.foto = imgDecodableString
+                    AuthenticationBusiness.saveImage(imgDecodableString.toString())
 
                 }
             }
