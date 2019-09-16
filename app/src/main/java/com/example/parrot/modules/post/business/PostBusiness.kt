@@ -12,10 +12,11 @@ object PostBusiness {
 
     fun doPost(
             mensagem: String,
+            foto: String,
             onSuccess: () -> Unit,
             onError: (message: String) -> Unit) {
 
-        PostNetwork.doPost(mensagem,
+        PostNetwork.doPost(mensagem, foto,
                 onSuccess = {
                     PostDatabase.doPost(it)
                     onSuccess()

@@ -4,9 +4,11 @@ import com.example.parrot.core.network.BaseNetwork
 import com.example.parrot.modules.authentication.model.SessionAuthentication
 import com.example.parrot.modules.post.model.Post
 import com.example.parrot.modules.post.model.PostWrapper
+import okhttp3.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 object PostNetwork : BaseNetwork() {
 
@@ -22,29 +24,32 @@ object PostNetwork : BaseNetwork() {
 
     fun doPost(
             mensagem : String,
+            imagem : String,
             onSuccess: (response: Post) -> Unit,
             onError: () -> Unit) {
 
-        val postWrapper = PostWrapper(mensagem)
+        var file = File(imagem)
 
-        API.doPost(postWrapper).enqueue(object : retrofit2.Callback<Post> {
-            override fun onFailure(call: Call<Post>, t: Throwable) {
+        var fileRequestBody = RequestBody.create(MediaType.parse("image/*"), file)
 
-                onError()
-                t.printStackTrace()
+        var part = MultipartBody.Part.createFormData("imagem", file.name, fileRequestBody)
 
-            }
+//        API.doPost(mensagem, part).enqueue(object : retrofit2.Callback<Any> {
+//            override fun onFailure(call: Call<Any>, t: Throwable) {
+//                onError()
+//                t.printStackTrace()
+//            }
+//
+//            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+//                if (response.isSuccessful) {
+//                    response.body()?.let { onSuccess(it) }
+//                } else {
+//                    onError()
+//                }
+//            }
+//        })
 
-            override fun onResponse(call: Call<Post>, response: Response<Post>) {
-
-                if (response.isSuccessful) {
-                    response.body()?.let { onSuccess(it) }
-                } else {
-                    onError()
-                }
-
-            }
-        })
+        doRequest(API, onSuccess, onError) { doPost(mensagem, part) }
     }
 
     fun deletePost(

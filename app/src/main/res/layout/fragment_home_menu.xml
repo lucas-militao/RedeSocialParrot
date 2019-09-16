@@ -26,7 +26,7 @@
             android:background="@drawable/bg_new_post">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/icEdit"
+                android:id="@+id/includeImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -78,7 +78,7 @@
                 android:layout_marginBottom="4dp"
                 android:text="Postar"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/icEdit"
+                app:layout_constraintEnd_toStartOf="@+id/includeImage"
                 app:layout_constraintHorizontal_bias="0.943"
                 app:layout_constraintStart_toStartOf="parent" />
 

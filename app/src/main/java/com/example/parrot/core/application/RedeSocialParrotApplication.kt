@@ -5,11 +5,13 @@ import android.se.omapi.Session
 import com.example.parrot.BuildConfig
 import com.example.parrot.BuildConfig.DEBUG
 import com.example.parrot.core.SessionController
+import com.example.parrot.modules.authentication.business.AuthenticationBusiness
 import com.example.parrot.modules.authentication.database.AuthenticationDatabase
 import com.facebook.stetho.Stetho
 import com.uphyca.stetho_realm.RealmInspectorModulesProvider
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import kotlin.system.exitProcess
 
 class RedeSocialParrotApplication : Application(){
 
@@ -35,6 +37,10 @@ class RedeSocialParrotApplication : Application(){
             SessionController.user = it.user
             SessionController.token = it.token
 
+        }
+
+        if (AuthenticationDatabase.getSessionAuthentication() == null) {
+            AuthenticationBusiness.doLogout()
         }
 //        SessionController.sessionAuthentication = AuthenticationDatabase.getSessionAuthentication()
 

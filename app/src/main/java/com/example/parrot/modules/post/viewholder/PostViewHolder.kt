@@ -1,8 +1,10 @@
 package com.example.parrot.modules.post.viewholder
 
+import android.graphics.BitmapFactory
 import android.text.format.DateUtils
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.parrot.R
 import com.example.parrot.R.drawable
 import com.example.parrot.modules.post.model.Post
@@ -17,6 +19,9 @@ class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         itemView.txtPost.text = post.mensagem
         itemView.txtLikeCount.text = post.curtidas.toString()
+        Glide.with(itemView)
+            .load(post.imagem)
+            .into(itemView.imgPost)
         itemView.imgCurtir.setImageResource(curtido)
 
         Locale.setDefault(Locale("PT", "br"))

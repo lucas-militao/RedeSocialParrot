@@ -14,6 +14,8 @@ import com.example.parrot.modules.post.model.Post
 
 class PostViewModel : BaseViewModel() {
 
+    var foto: String = ""
+    var mensagem: String = ""
     private val _post = MutableLiveData<List<Post>>()
     val post: LiveData<List<Post>> = _post
 
@@ -30,11 +32,11 @@ class PostViewModel : BaseViewModel() {
 
     }
 
-    fun doPost(mensagem: String?) {
+    fun doPost() {
 
         onPostRequestStatus.value = STARTED
 
-        doPost(mensagem!!,
+        doPost(mensagem, foto,
                 onSuccess = {
                     _post.value = PostBusiness.getPostsDB()
                     onPostSucessful.call()
