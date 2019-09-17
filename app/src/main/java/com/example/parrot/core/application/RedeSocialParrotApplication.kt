@@ -11,6 +11,7 @@ import com.facebook.stetho.Stetho
 import com.uphyca.stetho_realm.RealmInspectorModulesProvider
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import java.util.logging.Handler
 import kotlin.system.exitProcess
 
 class RedeSocialParrotApplication : Application(){
